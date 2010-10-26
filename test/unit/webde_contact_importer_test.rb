@@ -36,4 +36,12 @@ class WebdeContactImporterTest < ContactImporterTestCase
       assert contacts.include?(contact), "Could not find: #{contact.inspect} in #{contacts.inspect}"
     end
   end
+  
+  def test_fetch_contacts_by_scraping_folders
+    account = TestAccounts[:webde_scrape]
+    contacts = Contacts.new(:webde, account.username, account.password).contacts
+    account.contacts.each do |contact|
+      assert contacts.include?(contact), "Could not find: #{contact.inspect} in #{contacts.inspect}"
+    end
+  end
 end
